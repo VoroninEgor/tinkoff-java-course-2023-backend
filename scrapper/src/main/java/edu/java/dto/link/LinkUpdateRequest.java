@@ -1,4 +1,4 @@
-package edu.java.dto;
+package edu.java.dto.link;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

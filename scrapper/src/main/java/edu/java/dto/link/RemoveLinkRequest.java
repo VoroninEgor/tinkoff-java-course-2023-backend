@@ -1,12 +1,10 @@
-package edu.java.dto;
+package edu.java.dto.link;
 
 import jakarta.validation.constraints.NotNull;
 import java.net.URI;
 
-public record LinkResponse(
-    Long id,
-
+public record RemoveLinkRequest(
     @NotNull
-    URI url
+    URI link
 ) {
 }

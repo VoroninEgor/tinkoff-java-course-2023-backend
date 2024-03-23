@@ -5,6 +5,6 @@ import java.net.URI;
 
 public record RemoveLinkRequest(
     @NotNull
-    URI url
+    URI link
 ) {
 }

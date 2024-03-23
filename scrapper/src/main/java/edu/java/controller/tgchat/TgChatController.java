@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/tg-chat")
 public class TgChatController {
 
-    private final TgChatService tgChatService;
+    private final TgChatService jdbcTgChatService;
 
     @Operation(operationId = "tgChatIdDelete", summary = "Удалить чат")
     @ApiResponse(responseCode = "200", description = "Чат успешно добавлен")
@@ -33,16 +33,18 @@ public class TgChatController {
     @DeleteMapping("/{id}")
     public void tgChatIdDelete(@PathVariable("id") Long id) {
         log.info("/tg-chat/{id} DELETE endpoint");
-        tgChatService.removeById(id);
+        jdbcTgChatService.unregister(id);
     }
 
     @Operation(operationId = "tgChatIdPost", summary = "Зарегистрировать чат")
     @ApiResponse(responseCode = "200", description = "Чат зарегистрирован")
     @ApiResponse(responseCode = "400", description = "Некорректные параметры запроса",
                  content = @Content(schema = @Schema(implementation = ApiErrorResponse.class)))
+    @ApiResponse(responseCode = "409", description = "Повтороное добавление",
+                 content = @Content(schema = @Schema(implementation = ApiErrorResponse.class)))
     @PostMapping("/{id}")
     public void tgChatIdPost(@PathVariable("id") Long id) {
         log.info("/tg-chat/{id} POST endpoint");
-        tgChatService.save(id);
+        jdbcTgChatService.register(id);
     }
 }

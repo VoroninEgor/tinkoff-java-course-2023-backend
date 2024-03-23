@@ -2,10 +2,11 @@ package edu.java.bot.command;
 
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
-import edu.java.bot.model.TrackingLinks;
-import edu.java.bot.repository.TrackingLinksRepository;
+import edu.java.bot.client.ScrapperLinkClient;
+import edu.java.bot.dto.AddLinkRequest;
 import edu.java.bot.utill.MessageUtils;
 import edu.java.bot.utill.URLChecker;
+import java.net.URI;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -14,26 +15,27 @@ import org.springframework.stereotype.Component;
 public class TrackCommand extends AbstractCommand {
     private final static String COMMAND = "/track";
     private final static String DESCRIPTION = "Start tracking";
-    private final static String MESSAGE = "Use a valid URL as a parameter in the form like '/track <url>'";
-    private final TrackingLinksRepository trackingLinksRepository;
-    private final MessageUtils messageUtils;
 
-    public TrackCommand(TrackingLinksRepository trackingLinksRepository, MessageUtils messageUtils) {
+    private final static String TRACK_ERROR_MESSAGE = "Use a valid URL as a parameter in the form like '/track <link>'";
+    private final MessageUtils messageUtils;
+    private final ScrapperLinkClient scrapperLinkClient;
+
+    public TrackCommand(MessageUtils messageUtils, ScrapperLinkClient scrapperLinkClient) {
         super(COMMAND, DESCRIPTION);
-        this.trackingLinksRepository = trackingLinksRepository;
         this.messageUtils = messageUtils;
+        this.scrapperLinkClient = scrapperLinkClient;
     }
 
     @Override
     public SendMessage handle(Update update) {
         Long chatId = update.message().chat().id();
-        TrackingLinks trackingUser = trackingLinksRepository.getTrackingLinksByChatId(chatId);
+        log.info("TrackCommand for chat: {} handling...", chatId);
         String url = messageUtils.parseUrlFromText(update.message().text());
         if (URLChecker.isValid(url)) {
-            trackingUser.track(url);
+            scrapperLinkClient.postLinkByChatId(chatId, new AddLinkRequest(URI.create(url)));
             return new SendMessage(chatId, "Successfully added!");
         }
-        log.warn("invalid url was sent, track command");
-        return new SendMessage(chatId, MESSAGE);
+        log.warn("TrackCommand chat {} sent invalid link", chatId);
+        return new SendMessage(chatId, TRACK_ERROR_MESSAGE);
     }
 }

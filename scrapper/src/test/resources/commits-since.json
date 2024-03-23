@@ -1,0 +1,29 @@
+[
+    {
+        "commit": {
+            "author": {
+                "name": "Voronin Egor",
+                "date": "2024-03-18T23:52:22Z"
+            },
+            "message": "feat: add services"
+        }
+    },
+    {
+        "commit": {
+            "author": {
+                "name": "Voronin Egor",
+                "date": "2024-02-18T23:38:40Z"
+            },
+            "message": "feat: add dao"
+        }
+    },
+    {
+        "commit": {
+            "author": {
+                "name": "Voronin Egor",
+                "date": "2024-01-22T06:05:18Z"
+            },
+            "message": "feat: add first and second hw"
+        }
+    }
+]
