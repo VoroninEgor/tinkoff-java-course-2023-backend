@@ -1,24 +1,24 @@
 package edu.java.service;
 
 import edu.java.dto.AddLinkRequest;
-import edu.java.dto.LinkResponse;
-import edu.java.dto.ListLinksResponse;
 import edu.java.dto.RemoveLinkRequest;
-import org.springframework.stereotype.Service;
+import edu.java.dto.link.LinkResponse;
+import edu.java.dto.link.LinkUpdateResponse;
+import edu.java.dto.link.ListLinksResponse;
+import java.net.URI;
+import java.time.OffsetDateTime;
+import java.util.List;
 
+public interface LinkService {
+    LinkResponse untrackLinkForUser(Long tgChatId, RemoveLinkRequest removeLinkRequest);
 
-@Service
-public class LinkService {
-    public LinkResponse removeLink(Long tgChatId, RemoveLinkRequest removeLinkRequest) {
-        return null;
-    }
+    ListLinksResponse getLinks(Long tgChatId);
 
-    public ListLinksResponse getLinks(Long tgChatId) {
-        return null;
-    }
+    LinkResponse trackLinkForUser(Long tgChatId, AddLinkRequest addLinkRequest);
 
-    public LinkResponse addLink(Long tgChatId, AddLinkRequest addLinkRequest) {
-        //        throw new LinkAlreadyAddedException(); //TODO
-        return null;
-    }
+    List<LinkUpdateResponse> findLinksToCheckForUpdates(Long forceCheckDelay);
+
+    void updateLink(URI link, OffsetDateTime updatedAt);
+
+    void remove(URI link);
 }

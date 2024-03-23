@@ -1,9 +1,9 @@
 package edu.java.controller.link;
 
 import edu.java.dto.AddLinkRequest;
-import edu.java.dto.LinkResponse;
-import edu.java.dto.ListLinksResponse;
 import edu.java.dto.RemoveLinkRequest;
+import edu.java.dto.link.LinkResponse;
+import edu.java.dto.link.ListLinksResponse;
 import edu.java.exception.ApiErrorResponse;
 import edu.java.service.LinkService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -45,7 +45,7 @@ public class LinkController {
         @Valid @RequestBody RemoveLinkRequest removeLinkRequest
     ) {
         log.info("/links DELETE endpoint");
-        return linksService.removeLink(tgChatId, removeLinkRequest);
+        return linksService.untrackLinkForUser(tgChatId, removeLinkRequest);
     }
 
     @Operation(operationId = "linksGet", summary = "Получить все отслеживаемые ссылки")
@@ -69,6 +69,6 @@ public class LinkController {
         @NotNull @RequestHeader(value = "Tg-Chat-Id") Long tgChatId, @Valid @RequestBody AddLinkRequest addLinkRequest
     ) {
         log.info("/links POST endpoint");
-        return linksService.addLink(tgChatId, addLinkRequest);
+        return linksService.trackLinkForUser(tgChatId, addLinkRequest);
     }
 }

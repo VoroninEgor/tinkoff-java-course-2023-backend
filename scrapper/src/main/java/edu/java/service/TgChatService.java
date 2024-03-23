@@ -1,14 +1,15 @@
 package edu.java.service;
 
-import org.springframework.stereotype.Service;
+import edu.java.dto.tgchatlinks.TgChatResponse;
+import java.net.URI;
+import java.util.List;
 
-@Service
-public class TgChatService {
-    public void removeById(Long id) {
-        //        throw new TgChatNotExistException(); //TODO
-    }
+public interface TgChatService {
+    void unregister(Long id);
 
-    public void save(Long id) {
-//        throw new TgChatAlreadyRegisteredException(); //TODO
-    }
+    void register(Long id);
+
+    List<Long> fetchTgChatsIdByLink(URI link);
+
+    TgChatResponse fetchById(Long id);
 }

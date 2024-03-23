@@ -22,7 +22,8 @@ public class HelpCommand extends AbstractCommand {
 
     @Override
     public SendMessage handle(Update update) {
-        log.info("HelpCommand handling...");
-        return new SendMessage(update.message().chat().id(), message);
+        Long chatId = update.message().chat().id();
+        log.info("HelpCommand for chat: {} handling...", chatId);
+        return new SendMessage(chatId, message);
     }
 }

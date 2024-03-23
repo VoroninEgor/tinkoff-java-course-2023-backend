@@ -7,7 +7,7 @@ import org.springframework.validation.annotation.Validated;
 
 @Validated
 public record RepoResponse(
-    @JsonProperty("updated_at")
+    @JsonProperty("pushed_at")
     @NotNull
     OffsetDateTime updatedAt) {
 }
