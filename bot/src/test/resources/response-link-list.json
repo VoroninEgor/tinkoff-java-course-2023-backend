@@ -2,7 +2,7 @@
     "links": [
         {
             "id": 1,
-            "url": "url"
+            "link": "url"
         }
     ],
     "size": 1

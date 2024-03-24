@@ -32,6 +32,7 @@ public class UpdatesController {
     @PostMapping
     public void updatesPost(@Valid @RequestBody LinkUpdateRequest linkUpdate) {
         log.info("/updates POST endpoint");
+        log.info("link {} update for chats: {}", linkUpdate.url(), linkUpdate.tgChatIds());
         updatesService.handleUpdate(linkUpdate);
     }
 }

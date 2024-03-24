@@ -1,9 +1,13 @@
-package edu.java.dto;
+package edu.java.dto.link;
 
 import jakarta.validation.constraints.NotNull;
 import java.net.URI;
+import lombok.Builder;
 
-public record AddLinkRequest(
+@Builder
+public record LinkResponse(
+    Long id,
+
     @NotNull
     URI link
 ) {

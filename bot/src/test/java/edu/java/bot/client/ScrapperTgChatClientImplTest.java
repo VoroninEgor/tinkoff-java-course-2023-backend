@@ -25,13 +25,13 @@ class ScrapperTgChatClientImplTest {
     void tgChatIdDelete() {
         stubFor(delete("/tg-chat/5").willReturn(aResponse()));
 
-        assertDoesNotThrow(() -> client.tgChatIdDelete(5L));
+        assertDoesNotThrow(() -> client.removeById(5L));
     }
 
     @Test
     void tgChatIdPost() {
         stubFor(post("/tg-chat/5").willReturn(aResponse()));
 
-        assertDoesNotThrow(() -> client.tgChatIdPost(5L));
+        assertDoesNotThrow(() -> client.create(5L));
     }
 }

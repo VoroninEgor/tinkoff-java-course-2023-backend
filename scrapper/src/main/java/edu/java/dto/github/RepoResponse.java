@@ -1,4 +1,4 @@
-package edu.java.dto;
+package edu.java.dto.github;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
@@ -7,7 +7,7 @@ import org.springframework.validation.annotation.Validated;
 
 @Validated
 public record RepoResponse(
-    @JsonProperty("updated_at")
+    @JsonProperty("pushed_at")
     @NotNull
     OffsetDateTime updatedAt) {
 }

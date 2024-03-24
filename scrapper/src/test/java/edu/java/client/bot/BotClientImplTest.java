@@ -2,14 +2,13 @@ package edu.java.client.bot;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import edu.java.client.AbstractTest;
-import edu.java.dto.LinkUpdateRequest;
+import edu.java.dto.link.LinkUpdateRequest;
+import org.junit.jupiter.api.Test;
+
 import java.net.URI;
 import java.util.List;
-import org.junit.jupiter.api.Test;
-import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
-import static com.github.tomakehurst.wiremock.client.WireMock.equalToJson;
-import static com.github.tomakehurst.wiremock.client.WireMock.post;
-import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
+
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @WireMockTest(httpPort = 8090)

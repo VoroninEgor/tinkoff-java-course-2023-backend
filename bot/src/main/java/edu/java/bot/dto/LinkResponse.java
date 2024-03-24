@@ -7,6 +7,6 @@ public record LinkResponse(
     Long id,
 
     @NotNull
-    URI url
+    URI link
 ) {
 }

@@ -2,7 +2,7 @@ app:
   scheduler:
     enable: true
     interval: 10s
-    force-check-delay: 10s
+    force-check-delay: 1m
 
 spring:
   application:
@@ -14,6 +14,10 @@ spring:
     password: postgres
   liquibase:
     enabled: false
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
 
 server:
   port: 8080

@@ -6,9 +6,9 @@ import edu.java.bot.dto.ListLinksResponse;
 import edu.java.bot.dto.RemoveLinkRequest;
 
 public interface ScrapperLinkClient {
-    LinkResponse linksDelete(Long tgChatId, RemoveLinkRequest removeLinkRequest);
+    LinkResponse removeLinkByChatId(Long tgChatId, RemoveLinkRequest removeLinkRequest);
 
-    ListLinksResponse linksGet(Long tgChatId);
+    ListLinksResponse getLinksByChatId(Long tgChatId);
 
-    LinkResponse linksPost(Long tgChatId, AddLinkRequest addLinkRequest);
+    LinkResponse postLinkByChatId(Long tgChatId, AddLinkRequest addLinkRequest);
 }
